@@ -2,44 +2,48 @@ import SwiftUI
 
 struct ContentView: View {
     
-    private var redOpacity = 0.1
-    private var yellowOpacity = 0.1
-    private var greenOpacity = 0.1
+    @State private var redOpacity = 0.1
+    @State private var yellowOpacity = 0.1
+    @State private var greenOpacity = 0.1
     
-    private var currentColor = "none"
+    private var settingCircle = Circle().stroke(Color.white, lineWidth: 2)
+
+    @State private var currentColor = "START"
     
     var body: some View {
         VStack {
             Circle()
                 .foregroundStyle(Color.red)
+                .overlay(settingCircle)
                 .opacity(redOpacity)
             Circle()
                 .foregroundStyle(Color.yellow)
+                .overlay(settingCircle)
                 .opacity(yellowOpacity)
             Circle()
                 .foregroundStyle(Color.green)
+                .overlay(settingCircle)
                 .opacity(greenOpacity)
-            Button("START") {
-                return
+            Button(currentColor) {
+                changeColor()
             }
-
         }
         .padding()
     }
     
-    private mutating func changeColor() {
+    private func changeColor() {
         switch currentColor {
-        case "red":
+        case "Turn on yellow":
             redOpacity = 0.1
-            currentColor = "yellow"
+            currentColor = "Turn on green"
             yellowOpacity = 1.0
-        case "yellow":
+        case "Turn on green":
             yellowOpacity = 0.1
-            currentColor = "green"
+            currentColor = "Turn on red"
             greenOpacity = 1.0
         default:
             greenOpacity = 0.1
-            currentColor = "red"
+            currentColor = "Turn on yellow"
             redOpacity = 1.0
         }
     }
