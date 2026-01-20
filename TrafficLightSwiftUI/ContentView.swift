@@ -6,16 +6,17 @@ struct ContentView: View {
     @State private var yellowOpacity = 0.1
     @State private var greenOpacity = 0.1
     
-    private var settingCircle = Circle().stroke(Color.white, lineWidth: 2)
+    private var settingCircle = Circle().stroke(Color.white, lineWidth: 5)
 
-    @State private var currentColor = "START"
+    @State private var currentColor = ""
+    @State private var nameButton = "START"
     
     var body: some View {
         ZStack {
             Color.black
             .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 300) {
                 VStack {
                     Circle()
                         .foregroundStyle(Color.red)
@@ -29,32 +30,40 @@ struct ContentView: View {
                         .foregroundStyle(Color.green)
                         .overlay(settingCircle)
                         .opacity(greenOpacity)
-                    //            Button(currentColor) {
-                    //                changeColor()
-                    //            }
                 }
+//                Spacer()
                 Button(action: changeColor) {
-                    Text(currentColor)
+                    Text(nameButton)
+                        .font(.largeTitle)
+                        .frame(width: 150, height: 50)
                 }
-                .frame(width: 150, height: 250)
-                .padding(.bottom, 20)
+                .background(.blue)
+                .foregroundStyle(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 50))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 50)
+                        .stroke(Color.white, lineWidth: 4)
+                )
+                .padding(.bottom, 50)
             }
         }
     }
     
     private func changeColor() {
+        nameButton = "NEXT"
+        
         switch currentColor {
-        case "Turn on yellow":
+        case "Red":
             redOpacity = 0.1
-            currentColor = "Turn on green"
+            currentColor = "Yellow"
             yellowOpacity = 1.0
-        case "Turn on green":
+        case "Yellow":
             yellowOpacity = 0.1
-            currentColor = "Turn on red"
+            currentColor = "Green"
             greenOpacity = 1.0
         default:
             greenOpacity = 0.1
-            currentColor = "Turn on yellow"
+            currentColor = "Red"
             redOpacity = 1.0
         }
     }
