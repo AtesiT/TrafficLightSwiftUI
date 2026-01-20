@@ -11,24 +11,35 @@ struct ContentView: View {
     @State private var currentColor = "START"
     
     var body: some View {
-        VStack {
-            Circle()
-                .foregroundStyle(Color.red)
-                .overlay(settingCircle)
-                .opacity(redOpacity)
-            Circle()
-                .foregroundStyle(Color.yellow)
-                .overlay(settingCircle)
-                .opacity(yellowOpacity)
-            Circle()
-                .foregroundStyle(Color.green)
-                .overlay(settingCircle)
-                .opacity(greenOpacity)
-            Button(currentColor) {
-                changeColor()
+        ZStack {
+            Color.black
+            .ignoresSafeArea()
+            
+            VStack {
+                VStack {
+                    Circle()
+                        .foregroundStyle(Color.red)
+                        .overlay(settingCircle)
+                        .opacity(redOpacity)
+                    Circle()
+                        .foregroundStyle(Color.yellow)
+                        .overlay(settingCircle)
+                        .opacity(yellowOpacity)
+                    Circle()
+                        .foregroundStyle(Color.green)
+                        .overlay(settingCircle)
+                        .opacity(greenOpacity)
+                    //            Button(currentColor) {
+                    //                changeColor()
+                    //            }
+                }
+                Button(action: changeColor) {
+                    Text(currentColor)
+                }
+                .frame(width: 150, height: 250)
+                .padding(.bottom, 20)
             }
         }
-        .padding()
     }
     
     private func changeColor() {
