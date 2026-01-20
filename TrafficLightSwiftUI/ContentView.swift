@@ -3,10 +3,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Circle()
+                .foregroundStyle(Color.red)
+            Circle()
+                .foregroundStyle(Color.yellow)
+            Circle()
+                .foregroundStyle(Color.green)
+            Button("START") {
+                return
+            }
+
         }
         .padding()
     }
