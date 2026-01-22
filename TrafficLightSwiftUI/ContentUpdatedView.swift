@@ -5,6 +5,15 @@ enum currentLight {
 }
 
 struct ContentUpdatedView: View {
+    
+    @State private var titleButton: String = "Start"
+    
+    @State private var redColorOpacity = 0.3
+    @State private var yellowColorOpacity = 0.3
+    @State private var greenColorOpacity = 0.3
+    
+    @State private var currentLight = CurrentLight.green
+    
     var body: some View {
         ZStack {
             VStack {
