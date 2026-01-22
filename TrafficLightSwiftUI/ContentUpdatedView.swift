@@ -18,6 +18,26 @@ struct ContentUpdatedView: View {
             }
         }
     }
+    
+    func changeColor() {
+        let lightIsOn = 1.0
+        let lightIsOff = 0.3
+        
+        switch currentLight {
+        case .red:
+            currentLight = .yellow
+            redColorOpacity = lightIsOff
+            yellowColorOpacity = lightIsOn
+        case .yellow:
+            currentLight = .green
+            yellowColorOpacity = lightIsOff
+            greenColorOpacity = lightIsOn
+        case .green:
+            currentLight = .red
+            greenColorOpacity = lightIsOff
+            redColorOpacity = lightIsOn
+        }
+    }
 }
 
 #Preview {
