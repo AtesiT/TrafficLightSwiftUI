@@ -16,6 +16,9 @@ struct ContentUpdatedView: View {
     
     var body: some View {
         ZStack {
+            Color.black
+                .ignoresSafeArea()
+            
             VStack() {
                 ColorCircleView(color: .red, opacity: redColorOpacity)
                 ColorCircleView(color: .yellow, opacity: yellowColorOpacity)
@@ -28,8 +31,8 @@ struct ContentUpdatedView: View {
                     changeColor()
                 }
             }
+            .padding()
         }
-        .padding()
     }
     
     func changeColor() {
