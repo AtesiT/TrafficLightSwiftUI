@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum currentLight {
+enum CurrentLight {
     case red, yellow, green
 }
 
@@ -16,16 +16,20 @@ struct ContentUpdatedView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                ColorCircleView(color: .red, opacity: 0.3)
-                ColorCircleView(color: .yellow, opacity: 0.3)
-                ColorCircleView(color: .green, opacity: 0.3)
-            }
-            Spacer()
-            StartButtonView(title: "START") {
-                
+            VStack() {
+                ColorCircleView(color: .red, opacity: redColorOpacity)
+                ColorCircleView(color: .yellow, opacity: yellowColorOpacity)
+                ColorCircleView(color: .green, opacity: greenColorOpacity)
+                Spacer()
+                StartButtonView(title: titleButton) {
+                    if titleButton == "Start" {
+                        titleButton = "Next"
+                    }
+                    changeColor()
+                }
             }
         }
+        .padding()
     }
     
     func changeColor() {
